@@ -1,3 +1,5 @@
+# O(n) | O(1)
+
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         res = nums[0]
@@ -6,6 +8,7 @@ class Solution:
         while left <= right:
             if nums[left] < nums[right]:
                 res = min(res,nums[left])
+                break
             
             mid = (left + right) // 2
             

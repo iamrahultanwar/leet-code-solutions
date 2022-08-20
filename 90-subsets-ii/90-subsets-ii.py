@@ -1,25 +1,26 @@
 class Solution:
+    # o(n*2**n) | o(n)
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
+
         result = []
-        
-        def backtrack(i,subset):
+        nums.sort()
+        def backtrack(i,sub):
             
-            if i == len(nums):
-                result.append(subset[::])
-                return
+            if i >= len(nums):
+                result.append(sub[::])
+                return 
             
+            sub.append(nums[i])
             
-            subset.append(nums[i])
+            backtrack(i+1,sub)
             
-            backtrack(i+1,subset)
-            subset.pop()
+            sub.pop()
             
-            
-            while i+1 < len(nums) and nums[i] == nums[i+1]:
+            while i < len(nums) - 1  and nums[i] == nums[i+1]:
                 i += 1
-                
-            backtrack(i+1,subset)
+            
+            backtrack(i+1,sub)
+            
             
         backtrack(0,[])
         

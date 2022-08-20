@@ -1,13 +1,15 @@
 class Solution:
     def climbStairs(self,n:int)->int:
+        # same as fibonaci
         one,two = 1,1
         
         for i in range(n-1):
             temp = one
             one = one + two
             two = temp
-            
+        
         return one
+            
 #     def climbStairs(self, n: int) -> int:
 #         currentNumberOfWays = 0
 #         waysToTop = [1]

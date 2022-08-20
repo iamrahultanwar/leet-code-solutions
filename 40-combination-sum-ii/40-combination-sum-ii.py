@@ -4,23 +4,26 @@ class Solution:
         candidates.sort()
         
         result = []
-        def backtrack(curr,pos,target):
-            
+        
+        def findSum(i,sub,target):       
             if target == 0:
-                result.append(curr[::])
-            if target <= 0:
+                result.append(sub[::])
+                return            
+            if target < 0:
                 return
             
             prev = -1
-            
-            for i in range(pos,len(candidates)):
-                if prev == candidates[i]:
+                      
+            for j in range(i,len(candidates)):
+                if prev == candidates[j]:
                     continue
-                curr.append(candidates[i])
-                backtrack(curr,i+1,target-candidates[i])
-                curr.pop()
-                prev = candidates[i]
+                    
+                sub.append(candidates[j])
+                findSum(j+1,sub,target-candidates[j])
+                sub.pop()
+                
+                prev = candidates[j]
+                
+        findSum(0,[],target)
         
-        backtrack([],0,target)
         return result
-            

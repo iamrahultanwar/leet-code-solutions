@@ -1,20 +1,20 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        
+
         result = []
-        subsets = []
         
-        def dfs(i):
+        def findSubset(i,sub):
             
-            if i >= len(nums):
-                result.append(subsets.copy())
+            if i == len(nums):
+                result.append(sub[::])
                 return
             
-            subsets.append(nums[i])
-            dfs(i+1)
+            sub.append(nums[i])
+            findSubset(i+1,sub)
+            sub.pop()
+            findSubset(i+1,sub)
             
-            subsets.pop()
-            dfs(i+1)
             
-        dfs(0)
+        findSubset(0,[])
+        
         return result

@@ -4,12 +4,15 @@ class Solution:
         res = 0
         l = 0
         
-        for r in range(len(s)):
-            while s[r] in charSet:
-                charSet.remove(s[l])
-                l += 1
-            charSet.add(s[r])
-            res = max(res, r - l + 1)
         
-        return res
+        for r in range(len(s)): # loop over the string to
+            while s[r] in charSet: # we have found a duplicate 
+                charSet.remove(s[l]) # shrink the window
+                l += 1
+                
+            charSet.add(s[r])
             
+            res = max(res,r - l + 1)
+            
+            
+        return res

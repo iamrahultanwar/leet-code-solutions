@@ -16,5 +16,25 @@ class Solution:
             
             dp[i][j] = min(up,down)
             return dp[i][j]
-
-        return backtrack(len(grid)-1,len(grid[0])-1)
+        
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if i == 0 and j == 0:
+                    dp[i][i] = grid[i][j]
+                    
+                else:
+                    up = down = grid[i][j]              
+                    if i > 0 : 
+                        up += dp[i-1][j]
+                    else:
+                        up += float("inf")
+                    if j > 0:
+                        down += dp[i][j-1]
+                    else:
+                        down += float("inf")
+                        
+                    dp[i][j] = min(up,down)
+                
+        # return backtrack(len(grid)-1,len(grid[0])-1)
+        
+        return dp[-1][-1]

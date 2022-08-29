@@ -4,7 +4,7 @@ class Solution:
         n = len(matrix)
         m = len(matrix[0])
         
-        dp = [[-1 for _ in range(m)] for _ in range(n)]
+        dp = [[0 for _ in range(m)] for _ in range(n)]
         
         def backtrack(i,j):           
             if j < 0 or j >= m:
@@ -23,9 +23,31 @@ class Solution:
         
         ans = float("inf")
         
+        # for j in range(m):
+        #     curr = backtrack(n-1,j)
+        #     ans = min(ans,curr)
+            
+            
         for j in range(m):
-            curr = backtrack(n-1,j)
-            ans = min(ans,curr)
+            dp[0][j] = matrix[0][j]
             
+        for i in range(1,n):
+            for j in range(m):
+                up = matrix[i][j] + dp[i-1][j];
             
-        return ans
+                leftDiagonal= matrix[i][j]
+                if j-1>=0: leftDiagonal += dp[i-1][j-1]
+                else: leftDiagonal += float("inf")
+
+                rightDiagonal = matrix[i][j]
+                if j+1<m: rightDiagonal += dp[i-1][j+1]
+                else: rightDiagonal += float("inf")
+
+                dp[i][j] = min(up,leftDiagonal,rightDiagonal);
+                
+        mini = dp[n-1][0]
+        
+        for j in range(1,m):
+            mini = min(mini,dp[n-1][j])
+
+        return mini

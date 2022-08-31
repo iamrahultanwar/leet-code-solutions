@@ -3,18 +3,18 @@ class Solution:
 
         result = []
         
-        def findSubset(i,sub):
+        
+        def backtrack(i,curr=[]):
             
             if i == len(nums):
-                result.append(sub[::])
+                result.append(curr[::])
                 return
             
-            sub.append(nums[i])
-            findSubset(i+1,sub)
-            sub.pop()
-            findSubset(i+1,sub)
+            curr.append(nums[i])
+            backtrack(i+1,curr)
+            curr.pop()
+            backtrack(i+1,curr)
             
-            
-        findSubset(0,[])
+        backtrack(0)
         
         return result

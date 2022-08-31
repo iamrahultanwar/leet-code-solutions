@@ -1,17 +1,21 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
         
-        res = max(nums)
+        result = nums[0]
         
-        curMin,curMax = 1,1
+        
+        maxSum,minSum = 1,1
         
         
         for n in nums:
-            temp = curMax * n
+            temp = maxSum * n
             
-            curMax = max(curMax * n, curMin * n,n)
-            curMin = min(temp,curMin*n,n)
-            res = max(res,curMax)
+            maxSum = max(maxSum*n,minSum*n,n)
+            minSum = min(temp,minSum*n,n)
             
-        return res
+            result = max(result,maxSum)
+            
+            
+        return result
+            
         

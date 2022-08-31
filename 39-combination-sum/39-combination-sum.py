@@ -4,25 +4,24 @@ class Solution:
         result = []
         
         
-        def findSum(i,sub,total):
+        def backtrack(i,curr,total):
             
             if total == target:
-                result.append(sub[::])
-                return
+                result.append(curr[::])
+                return 
             
-            if total > target or i >= len(candidates):
+            if i >= len(candidates) or total > target:
                 return
             
             total += candidates[i]
-            sub.append(candidates[i])
-            findSum(i,sub,total)
-            sub.pop()
+            curr.append(candidates[i])
+            backtrack(i,curr,total)
             total -= candidates[i]
-            findSum(i+1,sub,total)
+            curr.pop()
+            backtrack(i+1,curr,total)
             
             
+        backtrack(0,[],0)
             
-        findSum(0,[],0)
-        
         return result
                     

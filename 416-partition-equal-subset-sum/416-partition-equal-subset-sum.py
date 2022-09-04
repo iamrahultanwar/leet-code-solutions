@@ -1,6 +1,11 @@
 class Solution:
     def subsetSumToKTabu(self,n,k,arr):
-        dp = [[False if i > 0 else True for i in range(k+1)] for _ in range(n)]
+        dp = [[False for i in range(k+1)] for _ in range(n)]
+        
+        for i in range(n):
+            dp[i][0] = True
+            
+        if arr[0] <= k: dp[0][arr[0]] = True
         
         for ind in range(1,n):
             for target in range(1,k+1):
@@ -13,7 +18,7 @@ class Solution:
                     
                 dp[ind][target] = take or notTake
                 
-        return dp[n-1][k]
+        return dp[-1][k]
     
     def subsetSumToK(self,n, k, arr):  
         a = arr

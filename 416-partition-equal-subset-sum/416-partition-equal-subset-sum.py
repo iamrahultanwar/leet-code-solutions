@@ -1,4 +1,20 @@
 class Solution:
+    def subsetSumToKTabu(self,n,k,arr):
+        dp = [[False if i > 0 else True for i in range(k+1)] for _ in range(n)]
+        
+        for ind in range(1,n):
+            for target in range(1,k+1):
+                notTake = dp[ind-1][target]
+                
+                take = False
+                
+                if arr[ind] <= target:
+                    take = dp[ind-1][target-arr[ind]]   
+                    
+                dp[ind][target] = take or notTake
+                
+        return dp[n-1][k]
+    
     def subsetSumToK(self,n, k, arr):  
         a = arr
 
@@ -33,5 +49,5 @@ class Solution:
         target = target // 2
                     
             
-        return self.subsetSumToK(len(nums),target,nums)
+        return self.subsetSumToKTabu(len(nums),target,nums)
                 

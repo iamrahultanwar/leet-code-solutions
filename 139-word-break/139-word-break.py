@@ -17,7 +17,7 @@ class Solution:
                     return dp[start]
             
             dp[start] = False
-            return False
+            return dp[start]
         
         
         return f(0,frozenset(wordDict))

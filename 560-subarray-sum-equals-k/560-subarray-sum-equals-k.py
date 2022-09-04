@@ -8,9 +8,9 @@ class Solution:
         
         for n in nums: 
             sum_ += n
-            
-            if (sum_ - k) in sumHash:
-                count += sumHash[sum_-k]
+            x = sum_ - k            
+            if x in sumHash:
+                count += sumHash[x]
                 
                 
             sumHash[sum_] = sumHash.get(sum_,0) + 1

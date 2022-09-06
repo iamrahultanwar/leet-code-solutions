@@ -8,12 +8,12 @@ class Solution:
     def pruneTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         
         
-        def bfs(node):           
+        def dfs(node):           
             if node is None:
                 return True # remove, val
             
-            leftSide = bfs(node.left)
-            rightSide = bfs(node.right)
+            leftSide = dfs(node.left)
+            rightSide = dfs(node.right)
             
             if leftSide:
                 node.left = None
@@ -27,7 +27,7 @@ class Solution:
             return remove
             
             
-        bfs(root)
+        dfs(root)
         
         if root.left is None and root.right is None and root.val == 0:
             root = None

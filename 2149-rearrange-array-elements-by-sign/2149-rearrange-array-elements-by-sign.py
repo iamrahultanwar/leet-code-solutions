@@ -1,21 +1,21 @@
 class Solution:
     def rearrangeArray(self, nums: List[int]) -> List[int]:
         
-        result = []
+        result = [0] * len(nums)
         
-        p = []
-        n = []
+        p = 0
+        n = 1
+        
         
         for num in nums:
+            
             if num > 0:
-                p.append(num)
+                result[p] = num
+                p += 2
+                
             else:
-                n.append(num)
+                result[n] = num
+                n += 2
                 
                 
-        for i in range(len(nums)//2):
-            result.append(p[i])
-            result.append(n[i])          
-            
-            
         return result

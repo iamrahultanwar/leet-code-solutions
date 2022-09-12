@@ -6,7 +6,6 @@ class Solution:
         
         ROWS,COLS = len(matrix),len(matrix[0])
         
-        visited = set()
         
         def dfs(r,c):
             for row in range(r+1,ROWS):

@@ -3,17 +3,17 @@ class Solution:
         
         result = nums[0]
         
+        minProduct = 1
+        maxProduct = 1
         
-        maxSum,minSum = 1,1
         
-        
-        for n in nums:
-            temp = maxSum * n
+        for num in nums:
+            temp = maxProduct * num
             
-            maxSum = max(maxSum*n,minSum*n,n)
-            minSum = min(temp,minSum*n,n)
+            maxProduct = max(maxProduct*num,minProduct*num,num)
+            minProduct = min(temp,minProduct*num,num)
             
-            result = max(result,maxSum)
+            result = max(result,maxProduct)
             
             
         return result

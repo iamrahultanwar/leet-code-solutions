@@ -4,13 +4,17 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
         
-        nums1[m:] = nums2
+        num1Copy = nums1[:m]
+        p1,p2 = 0,0
         
-        for i in range(len(nums1)):
-            j = i + 1
-            while j < len(nums1):
-                if nums1[i] > nums1[j]:
-                    nums1[i],nums1[j] = nums1[j],nums1[i]
-                j += 1
-        
+        for p in range(m+n):
+            if p2 >= n or (p1 < m and num1Copy[p1] <= nums2[p2]):
+                nums1[p] = num1Copy[p1]
+                p1 += 1
+            else:
+                nums1[p] = nums2[p2]
+                p2 += 1
+                
+                
+        return nums1
         

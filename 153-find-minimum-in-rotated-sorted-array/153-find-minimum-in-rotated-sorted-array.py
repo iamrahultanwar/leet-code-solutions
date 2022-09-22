@@ -13,6 +13,7 @@ class Solution:
             mid = (left + right) // 2
             
             res = min(res,nums[mid])
+            
             if nums[mid] >= nums[left]:
                 left = mid + 1
             else:

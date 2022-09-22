@@ -1,9 +1,10 @@
 class Solution:
     def singleNonDuplicate(self, nums: List[int]) -> int:
         
-        left,right = 0,len(nums)-1
+        left,right = 0,len(nums) - 1
         
         while left < right:
+            
             mid = left + (right - left) // 2
             
             isEven = (right - mid) % 2 == 0
@@ -16,7 +17,7 @@ class Solution:
                     
             elif nums[mid-1] == nums[mid]:
                 if isEven:
-                    right = mid -2
+                    right = mid - 2
                 else:
                     left = mid + 1
                     
@@ -24,4 +25,5 @@ class Solution:
                 return nums[mid]
             
         return nums[left]
-                
+    
+    

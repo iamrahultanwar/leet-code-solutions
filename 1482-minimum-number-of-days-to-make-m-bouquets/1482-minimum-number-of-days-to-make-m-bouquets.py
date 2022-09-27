@@ -3,7 +3,7 @@ class Solution:
         if m * k > len(bloomDay): return -1
         
         left, right = 1, max(bloomDay)
-        
+    
         while left < right:
             mid = (left + right) // 2
             flow = bouq = 0

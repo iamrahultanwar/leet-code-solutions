@@ -1,25 +1,23 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        # solve this question using binary search
-        l,r = 1,max(piles)
-        k = 0
         
-        while l <= r:
-            m = (l + r) // 2
+        left,right = 1,max(piles)
+        
+        while left < right:
             
-            hours = 0
+            speed = (left + right) // 2
             
-            for p in piles:
-                hours += math.ceil(p / m)
+            
+            hourSpent = 0
+            
+            for pile in piles:
+                hourSpent += math.ceil(pile/speed)
                 
-            if hours <= h:
-                k = m
-                r = m - 1
-                
+            
+            if hourSpent <= h:
+                right = speed
             else:
-                l = m + 1
+                left = speed + 1
                 
                 
-        return k
-                
-        
+        return right 

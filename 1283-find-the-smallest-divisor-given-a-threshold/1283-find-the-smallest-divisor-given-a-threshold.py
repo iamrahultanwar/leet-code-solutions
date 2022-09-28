@@ -5,7 +5,13 @@ class Solution:
         while left < right:
             mid = (left + right) // 2
             
-            if sum(ceil(num/mid) for num in nums) <= threshold:
+            currSum = 0
+            
+            for num in nums:
+                currSum += ceil(num/mid)
+                
+            
+            if currSum <= threshold:
                 right = mid
                 
             else:

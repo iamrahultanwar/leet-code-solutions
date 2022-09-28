@@ -1,21 +1,30 @@
 class Solution:
     def minDays(self, bloomDay: List[int], m: int, k: int) -> int:
         if m * k > len(bloomDay): return -1
+
         
-        left, right = 1, max(bloomDay)
-    
+        left,right = 1,max(bloomDay)
+        
         while left < right:
+            
             mid = (left + right) // 2
-            flow = bouq = 0
+            
+            f = b = 0
+            
             for day in bloomDay:
-                flow = 0 if day > mid else flow + 1
-                if flow >= k:
-                    flow = 0
-                    bouq += 1
-                    if bouq == m: break
-            if bouq == m:
+                f = 0 if day > mid else f + 1
+                
+                if f >= k:
+                    f = 0
+                    b += 1
+                    
+                    if b == m: break
+                        
+            if b == m:
                 right = mid
             else:
                 left = mid + 1
+                    
+                    
+                    
         return left
-            

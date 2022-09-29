@@ -1,14 +1,22 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
         
+        if len(arr) == k: return arr
         
-        sortedArr = sorted(arr,key=lambda num: abs(x-num))
+        left = bisect_left(arr,x)-1
+        right = left + 1
         
-        result = []
         
-        
-        for i in range(k):
-            result.append(sortedArr[i])
+        while right - left - 1 < k:
             
-        
-        return sorted(result)
+            if left == -1:
+                right += 1
+                continue
+            
+            if right == len(arr) or abs(arr[left] - x) <= abs(arr[right]-x):
+                left -= 1
+                
+            else:
+                right += 1
+                
+        return arr[left +1:right]
